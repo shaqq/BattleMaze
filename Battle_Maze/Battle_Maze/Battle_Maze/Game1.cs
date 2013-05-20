@@ -18,6 +18,7 @@ namespace Battle_Maze
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Maze maze;
 
         public Game1()
         {
@@ -34,7 +35,7 @@ namespace Battle_Maze
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            maze = new Maze(this, 25);
             base.Initialize();
         }
 
@@ -46,7 +47,7 @@ namespace Battle_Maze
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            maze.LoadContent();
             // TODO: use this.Content to load your game content here
         }
 
@@ -84,7 +85,9 @@ namespace Battle_Maze
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-
+            spriteBatch.Begin();
+            maze.Draw(gameTime, spriteBatch);
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }

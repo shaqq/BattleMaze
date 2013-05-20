@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 
 namespace Battle_Maze
 {
@@ -17,14 +19,17 @@ namespace Battle_Maze
 
     class Tile
     {
-        public TileCollision Collision;
+        public TileCollision collision;
+        public Texture2D texture;
 
         public const int height = 30;
         public const int width = 30;
+        public static readonly Vector2 size = new Vector2(width, height);
 
-        public Tile(TileCollision collision)
+        public Tile(Texture2D Texture, TileCollision Collision)
         {
-            Collision = collision;
+            texture = Texture;
+            collision = Collision;
         }
     }   
 }
