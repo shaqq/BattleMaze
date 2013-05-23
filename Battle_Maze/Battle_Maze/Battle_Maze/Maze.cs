@@ -69,10 +69,21 @@ namespace Battle_Maze
         /// Allows the game component to update itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        public override void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, MouseState mouseState)
         {
             // TODO: Add your update code here
 
+
+            if (mouseState.LeftButton == ButtonState.Pressed)
+            {
+                int mouseXCor = mouseState.X;
+                int mouseYCor = mouseState.Y;
+
+                TileCollision collision = tiles[mouseXCor/Tile.width, mouseYCor/Tile.height].collision;
+
+                if (collision == TileCollision.SoftWall)
+                    tiles[mouseXCor / Tile.width, mouseYCor / Tile.height].collision = TileCollision.Path;
+            }
             base.Update(gameTime);
         }
 
@@ -88,7 +99,7 @@ namespace Battle_Maze
                     else if (tileType == TileCollision.SoftWall)
                         spriteBatch.Draw(tiles[x, y].texture, new Rectangle((int)position.X, (int)position.Y, (int)position.X + Tile.width, (int)position.Y + Tile.height), Color.LightSteelBlue);
                     else
-                        spriteBatch.Draw(tiles[x, y].texture, new Rectangle((int)position.X, (int)position.Y, (int)position.X + Tile.width, (int)position.Y + Tile.height), Color.SteelBlue);
+                        spriteBatch.Draw(tiles[x, y].texture, new Rectangle((int)position.X, (int)position.Y, (int)position.X + Tile.width, (int)position.Y + Tile.height), Color.Gray);
                 }
             }
         }

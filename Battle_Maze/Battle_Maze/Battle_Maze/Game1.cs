@@ -35,7 +35,8 @@ namespace Battle_Maze
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            maze = new Maze(this, 25);
+            maze = new Maze(this, 40);
+            this.IsMouseVisible = true;
             base.Initialize();
         }
 
@@ -72,6 +73,9 @@ namespace Battle_Maze
                 this.Exit();
 
             // TODO: Add your update logic here
+
+            maze.Update(gameTime, Mouse.GetState());
+
 
             base.Update(gameTime);
         }
